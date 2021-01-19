@@ -5,7 +5,7 @@ class Api::V1::MeetingsController < ApplicationController
     def index   
         @meetings = Meeting.all
   
-      render json: @meetings
+      render json: @meetings,except:[:created_at, :updated_at] ,status: 200
     end
   
     # GET /meetings/1
@@ -46,7 +46,7 @@ class Api::V1::MeetingsController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def meeting_params
-        params.require(:meeting).permit(:name, :email, :password_digest)
+        params.require(:meeting).permit(:name, :date, :time, :detail, :end_time, :comment, user_id)
       end
   
   
