@@ -5,9 +5,34 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(
+User.create([
+        {
     name: "LaNice",
      email:"lp12@tester.com",
      password:"password" 
+},
+])
+Meeting.create([
+       {
+       name:"Meeting 1 ",
+       date:Date.parse('17/9/2021'),
+       time:Time.parse('01:30'),
+       detail:"Will be located in main room",
+       end_time:Time.parse('02:00'),
+       user_id: 1 ,
+       comment:" The meeting went well"
+       
+       },
+])
      
-     )
+
+MyMeeting.create([
+       { 
+        title:"Meeting 1 ",
+        date:Date.parse('17/9/2021'),
+        start_time:Time.parse('01:30'),
+        details:"Will be located in main room",
+        end_time:Time.parse('02:00'),
+        user_id: 1 
+        },
+])
