@@ -5,13 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create([
+User.create(
         {
     name: "LaNice",
      email:"lp12@tester.com",
      password:"password" 
 },
-])
+)
 Meeting.create([
        {
        name:"Meeting 1 ",
@@ -26,7 +26,7 @@ Meeting.create([
 ])
      
 
-MyMeeting.create([
+MyMeeting.create(
        { 
         title:"Meeting 1 ",
         date:Date.parse('17/9/2021'),
@@ -35,4 +35,4 @@ MyMeeting.create([
         end_time:Time.parse('02:00'),
         user_id: 1 
         },
-])
+)
