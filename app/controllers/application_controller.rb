@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+    include :: ApplicationController::Cookies
   
         def current_user
             User.first
