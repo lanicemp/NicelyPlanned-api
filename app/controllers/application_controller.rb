@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
     include :: ApplicationController::Cookies
   
         def current_user
-            User.first
+            User.find(id: session[:user_id])
         end 
     
 
