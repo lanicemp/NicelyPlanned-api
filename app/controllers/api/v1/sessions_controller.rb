@@ -5,7 +5,8 @@ class Api::V1::SessionsController < ApplicationController
 
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
-            render json: @user
+            render json: UserSerializer.new(@user), status: :ok
+            # allows the current user to be populated in the front end.  before updating the line above current user was not populating in my redux state. 
         else 
             render json: {
                 error: "Invalid Credentials"
