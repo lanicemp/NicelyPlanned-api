@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:4000/'
+    origins 'http://localhost:4000'
     # connecting the frontend to the backend by the webaddress
     # resource '/cors',
     # :headers => :any,
@@ -17,7 +17,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-      credentials: true
+      # Access-Control-Allow-Credentials true
+       credentials: true
       
 
   end
