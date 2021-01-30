@@ -42,6 +42,17 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  Rails.application.configure do
+    # Whitelist one hostname
+    config.hosts << "http://localhost:4000"
+    # Whitelist a test domain. Rails adds \A and \z around
+    # your regular expressions.
+    config.hosts << /application\.local/
+  end
+
+  # config.hosts = nil
+  # added to resolve the cors configuration error from Rails 6 
+
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
