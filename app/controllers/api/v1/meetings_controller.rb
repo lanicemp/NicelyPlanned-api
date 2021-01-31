@@ -3,9 +3,16 @@ class Api::V1::MeetingsController < ApplicationController
 
     # GET /meetings
     def index   
-        @meetings = Meeting.all
+      if logged_in
+        @meetings = current_user.meetings
   
       render json: @meetings,except:[:created_at, :updated_at] ,status: 200
+
+      else 
+        render json: {
+          error: "You must be logged in to see meetings"
+        }
+    end
     end
   
     # GET /meetings/1
@@ -46,7 +53,7 @@ class Api::V1::MeetingsController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def meeting_params
-        params.require(:meeting).permit(:name, :date, :time, :detail, :end_time, :comment, user_id)
+        params.require(:meeting).permit(:title, :date, :start_time, :detail, :end_time, :comment, user_id)
       end
   
   
