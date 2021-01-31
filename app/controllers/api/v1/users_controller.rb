@@ -24,6 +24,9 @@ class Api::V1::UsersController < ApplicationController
       render json: @user, status: :created
       # , location: @user
     else
+      resp = {
+        error: @user.errors.full_messages.to_sentence
+      }
       render json: @user.errors, status: :unprocessable_entity
     end
   end
