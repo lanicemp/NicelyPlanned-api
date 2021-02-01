@@ -5,7 +5,9 @@ class Api::V1::SessionsController < ApplicationController
 
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id
-            render json: UserSerializer.new(@user), status: :ok
+            render json: UserSerializer.new(@user).serializable_hash,
+            loggedIn: true
+            #adding serializable_hash and logged in remove the push error and allowed me to login when signed up and retrieve the data from the database.  
             # allows the current user to be populated in the front end.  before updating the line above current user was not populating in my redux state. 
         else 
             render json: {
@@ -16,7 +18,8 @@ class Api::V1::SessionsController < ApplicationController
 
     def get_current_user 
         if logged_in
-            render json: UserSerializer.new(current_user)
+            render json: UserSerializer.new(current_user).serializable_hash,
+            loggedIn: true
                     
         else 
             render json: {
