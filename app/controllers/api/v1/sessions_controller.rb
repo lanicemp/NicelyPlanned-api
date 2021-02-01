@@ -11,7 +11,7 @@ class Api::V1::SessionsController < ApplicationController
             # allows the current user to be populated in the front end.  before updating the line above current user was not populating in my redux state. 
         else 
             render json: {
-                error: "Invalid Credentials"
+                error: "no such user', 'verify credentials and try again or signup"
             }
         end
     end 
