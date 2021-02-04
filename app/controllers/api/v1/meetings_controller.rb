@@ -22,12 +22,16 @@ class Api::V1::MeetingsController < ApplicationController
   
     # POST /meetings
     def create
-      @meeting = Meeting.new(meeting_params)
+        @meeting = current_user.meetings.build(meeting_params)
+      # @meeting = Meeting.new(meeting_params, current_user)
   
       if @meeting.save
-        render json: @meeting, status: :created, location: @meeting
+        render json: MeetingSerializer.new(@meeting), status: :created
       else
-        render json: @meeting.errors, status: :unprocessable_entity
+        error_resp = {
+        error: @meeting.errors.full_messages.to_sentence
+      }
+        render json: error_resp, status: :unprocessable_entity
       end
     end
   
@@ -53,7 +57,7 @@ class Api::V1::MeetingsController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def meeting_params
-        params.require(:meeting).permit(:title, :date, :start_time, :detail, :end_time, :comment, user_id)
+        params.require(:meeting).permit(:title, :date, :start_time, :detail, :end_time, :comment)
       end
   
   
